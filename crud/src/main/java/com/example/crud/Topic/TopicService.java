@@ -24,6 +24,25 @@ public class TopicService {
     }
 
     public Optional<Topic> getTopic(Long topicId) {
-        return topicRepository.findById(topicId);
+
+        Optional<Topic> optionalTopic = topicRepository.findById(topicId);
+        return optionalTopic;
+    }
+
+    public void deleteTopic(Long topicId) {
+        Optional<Topic> topic = topicRepository.findById(topicId);
+
+        if(topic.isEmpty()){
+            throw new IllegalStateException("Topic with id of "+topicId + "does not exist");
+        }
+
+        topicRepository.deleteById(topicId);
+    }
+
+    public void updateTopic(Long topicId, Topic topic) {
+        Topic optionalTopic = topicRepository.findById(topicId).get();
+        optionalTopic.setName(topic.getName());
+        optionalTopic.setDescription(topic.getDescription());
+        topicRepository.save(optionalTopic);
     }
 }

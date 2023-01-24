@@ -1,5 +1,6 @@
 package com.example.crud.Topic;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,15 @@ public class TopicController {
     @GetMapping("/topics/{topicId}")
     public Optional<Topic> getTopic(@PathVariable("topicId") Long topicId){
         return  topicService.getTopic(topicId);
+    }
+
+    @DeleteMapping("/topics/{topicId}")
+    public void deleteTopic(@PathVariable("topicId") Long topicId){
+        topicService.deleteTopic(topicId);
+    }
+
+    @PutMapping("/topics/{topicId}")
+    public void updateTopic(@RequestBody Topic topic, @PathVariable("topicId") Long topicId){
+        topicService.updateTopic(topicId, topic);
     }
 }
