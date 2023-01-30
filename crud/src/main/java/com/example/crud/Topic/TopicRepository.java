@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     void deleteById(Long topicId);
+
+    Optional<Topic> findByName(String name);
 }

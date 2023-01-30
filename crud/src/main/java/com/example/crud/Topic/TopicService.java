@@ -45,4 +45,9 @@ public class TopicService {
         optionalTopic.setDescription(topic.getDescription());
         topicRepository.save(optionalTopic);
     }
+
+    public Optional<Topic> getTopicByName(String name) {
+        Optional<Topic> optionalTopic = topicRepository.findByName(name);
+        return optionalTopic;
+    }
 }

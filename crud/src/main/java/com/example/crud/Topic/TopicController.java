@@ -40,4 +40,9 @@ public class TopicController {
     public void updateTopic(@RequestBody Topic topic, @PathVariable("topicId") Long topicId){
         topicService.updateTopic(topicId, topic);
     }
+
+    @GetMapping("/topic/{name}")
+    public Optional<Topic> getTopicByName(@PathVariable("name") String name){
+        return topicService.getTopicByName(name);
+    }
 }
